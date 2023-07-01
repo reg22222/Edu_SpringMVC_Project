@@ -11,7 +11,7 @@
 		<b>글 목 록</b><br>
 		<table border="0" width="650">
 			<tr bgcolor="yellow">
-				<td align="right"><a href="board_writeForm.do">글쓰기</a></td>
+				<td align="right"><a href="board_write.do">글쓰기</a></td>
 			</tr>
 		</table>
 		<table border="1" width="650">

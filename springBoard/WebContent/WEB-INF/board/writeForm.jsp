@@ -32,7 +32,7 @@
 </head>
 <body>
 	<div align="center">
-		<form name="f" action="board_writePro.do" method="post"
+		<form name="f" action="board_write.do" method="post"
 			onsubmit="return check()">
 			<table border="1" width="410">
 				<tr bgcolor="yellow">

@@ -32,7 +32,7 @@
 </head>
 <body>
 	<div align="center">
-		<form name="f" action="board_updatePro.do" method="post"
+		<form name="f" action="board_update.do" method="post"
 			onsubmit="return check()">
 			<input type="hidden" name="num" value="${getBoard.num}"/>
 			<h3>±Û ¼ö Á¤</h3>
