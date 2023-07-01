@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="viewResolver"
+			class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<property name="prefix" value="WEB-INF/member/" />
+			<property name="suffix" value=".jsp"/>
+	</bean>
+
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName"><value>jdbc/oracle</value></property>
+		<property name="resourceRef" value="true"/>
+	</bean>
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<bean id="memberDAO" class="member.dao.MemberDAOImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+	
+	<bean name="/member_index.do" class="member.controller.MemberIndexController">
+	</bean>
+	
+	<bean name="/member_ssn.do" class="member.controller.MemberSsnController">
+	</bean>
+	
+	<bean name="/member_check.do" class="member.controller.MemberCheckController">
+		<property name="memberDAO" ref="memberDAO"/>
+	</bean>
+	
+	<bean name="/member_input_ok.do" class="member.controller.MemberInputOkAbstractCommandController">
+		<property name="memberDAO" ref="memberDAO"/>
+		<property name="commandClass" value="member.dto.MemberDTO"/>
+		<property name="commandName" value="memberCmd"/>
+	</bean>
+	
+	<bean name="/member_list.do" class="member.controller.MemberListController">
+		<property name="memberDAO" ref="memberDAO"/>
+	</bean>
+	
+	<bean name="/member_delete.do" class="member.controller.MemberDeleteController">
+		<property name="memberDAO" ref="memberDAO"/>
+	</bean>
+	
+	<bean name="/member_update.do" class="member.controller.MemberUpdateController">
+		<property name="memberDAO" ref="memberDAO"/>
+	</bean>
+	
+	<bean name="/member_update_ok.do" class="member.controller.MemberUpdateOkAbstractCommandController">
+		<property name="memberDAO" ref="memberDAO"/>
+		<property name="commandClass" value="member.dto.MemberDTO"/>
+		<property name="commandName" value="memberCmd"/>
+	</bean>
+	
+	<bean name="/login.do" class="member.controller.LoginController">
+	</bean>
+	
+	<bean name="/login_ok.do" class="member.controller.LoginOkController">
+		<property name="memberDAO" ref="memberDAO"/>
+	</bean>
+	
+	<bean name="/logout.do" class="member.controller.LogOutController">
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
