@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+<context:annotation-config />
 
 <bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -9,34 +13,49 @@
 		<property name="suffix" value=".jsp"/>
 </bean>
 
-<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+<!-- <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
 	<property name="jndiName"><value>jdbc/oracle</value></property>
 	<property name="resourceRef" value="true"/>
+</bean> -->
+
+<bean id="dataSource" 
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+	<property name="username" value="web06" />
+	<property name="password" value="web06" />	
 </bean>
+
 <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 	<property name="dataSource" ref="dataSource"/>
 </bean>
+
 <bean id="studentDAO" class="student.dao.StudentDAOImpl">
 	<property name="jdbcTemplate"><ref bean="jdbcTemplate"/></property>
 </bean>
 
-<bean name="/student_index.do" class="student.controller.StudentIndexController">
+
+<bean class="student.controller.StudentController">
 </bean>
 
-<bean name="/student_insert.do" class="student.controller.StudentInsertAbstractController">
+
+<!-- <bean name="/student_index.do" class="student.controller.StudentIndexController">
+</bean> -->
+
+<!-- <bean name="/student_insert.do" class="student.controller.StudentInsertAbstractController">
 	<property name="commandClass" value="student.dto.StudentDTO"/>
 	<property name="commandName" value="studentCmd"/>
 	<property name="studentDAO" ref="studentDAO"/>
-</bean>
-<bean name="/student_list.do" class="student.controller.StudentListController">
+</bean> -->
+<!-- <bean name="/student_list.do" class="student.controller.StudentListController">
 	<property name="studentDAO" ref="studentDAO"/>
-</bean>
-<bean name="/student_delete.do" class="student.controller.StudentDeleteController">
+</bean> -->
+<!-- <bean name="/student_delete.do" class="student.controller.StudentDeleteController">
 	<property name="studentDAO" ref="studentDAO"/>
-</bean>
-<bean name="/student_find.do" class="student.controller.StudentFindController">
+</bean> -->
+<!-- <bean name="/student_find.do" class="student.controller.StudentFindController">
 	<property name="studentDAO" ref="studentDAO"/>
-</bean>
+</bean> -->
 </beans>
 
 
