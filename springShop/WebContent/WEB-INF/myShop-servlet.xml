@@ -29,8 +29,18 @@
 		<property name="jdbcTemplate" ref="jdbcTemplate"/>
 	</bean>
 	
+	<bean id="productDAO" class="myShop.admin.dao.ProductDAOImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+	
+	<bean id="productList" class="myShop.mall.controller.ProductList">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>	
 	
 	<bean class="myShop.admin.controller.ShopAdminController">
+	</bean>
+	
+	<bean class="myShop.mall.controller.ShopMallController">
 	</bean>
 	
 	<bean id="multipartResolver"		

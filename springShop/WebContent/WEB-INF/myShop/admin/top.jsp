@@ -16,7 +16,7 @@
 				<th width="20%"><a href="cate_list.do">카테고리목록</a></th>
 				<th width="20%"><a href="prod_input.do">상품등록</a></th>
 				<th width="20%"><a href="prod_list.do">상품목록</a></th>
-				<th width="20%">쇼핑몰홈</th>
+				<th width="20%"><a href="shop_mall.do">쇼핑몰홈</a></th>
 			</tr>
 			<tr height="80%">
 				<td colspan="5">
