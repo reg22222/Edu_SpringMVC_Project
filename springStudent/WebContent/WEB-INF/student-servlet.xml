@@ -18,6 +18,7 @@
 	<property name="resourceRef" value="true"/>
 </bean> -->
 
+<!-- 
 <bean id="dataSource" 
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
@@ -33,7 +34,7 @@
 <bean id="studentDAO" class="student.dao.StudentDAOImpl">
 	<property name="jdbcTemplate"><ref bean="jdbcTemplate"/></property>
 </bean>
-
+-->
 
 <bean class="student.controller.StudentController">
 </bean>
