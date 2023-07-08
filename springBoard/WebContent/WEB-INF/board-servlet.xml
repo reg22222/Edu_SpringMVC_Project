@@ -17,7 +17,7 @@
 		<property name="jndiName" value="jdbc/oracle" />
 		<property name="resourceRef" value="true"/>
 	</bean> -->
-
+<!-- 
 	<bean id="dataSource" 
 			class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
@@ -33,7 +33,7 @@
 	<bean id="boardDAO" class="board.dao.BoardDAOImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate"/>
 	</bean>
-	
+-->	
 	<bean class="board.controller.BoardController">
 	</bean>
 	
@@ -49,7 +49,7 @@
 		<property name="commandClass" value="board.dto.BoardDTO"/>
 		<property name="commandName" value="boardCmd"/>
 	</bean> -->
-	
+<!-- 	
 	<bean name="/board_content.do" class="board.controller.BoardContentController">
 		<property name="boardDAO" ref="boardDAO"/>
 	</bean>
@@ -70,6 +70,7 @@
 		<property name="commandClass" value="board.dto.BoardDTO"/>
 		<property name="commandName" value="boardCmd"/>
 	</bean>
+	-->
 </beans>
 
 

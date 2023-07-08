@@ -15,16 +15,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import board.dao.BoardDAO;
 import board.dto.BoardDTO;
+import board.mybatis.BoardMapper;
 
 @Controller
 public class BoardController {
 	
-	@Autowired
-	private BoardDAO boardDAO;
+	//@Autowired
+	//private BoardDAO boardDAO;
 	
 	@RequestMapping("/board_list.do")
 	public ModelAndView listBoard() {
-		List<BoardDTO> list = boardDAO.listBoard();
+		//List<BoardDTO> list = boardDAO.listBoard();
+		List<BoardDTO> list = BoardMapper.listBoard();
 		return new ModelAndView("list", "listBoard", list);
 	}
 	
@@ -35,7 +37,8 @@ public class BoardController {
 	
 	@RequestMapping(value="/board_write.do", method=RequestMethod.POST)
 	public String writePro(HttpServletRequest req, @ModelAttribute BoardDTO dto) {
-		int res = boardDAO.insertBoard(dto);
+		//int res = boardDAO.insertBoard(dto);
+		int res = BoardMapper.insertBoard(dto);
 		if (res>0) {
 			req.setAttribute("msg", "게시글 등록 성공!! 게시글 목록페이지로 이동합니다.");
 			req.setAttribute("url", "board_list.do");
@@ -48,7 +51,8 @@ public class BoardController {
 	
 	@RequestMapping("/board_content.do")
 	public String content(HttpServletRequest req, int num) {
-		BoardDTO dto = boardDAO.getBoard(num, "content");
+		//BoardDTO dto = boardDAO.getBoard(num, "content");
+		BoardDTO dto = BoardMapper.getBoard(num, "content");
 		req.setAttribute("getBoard", dto);
 		return "content";
 	}
@@ -61,8 +65,9 @@ public class BoardController {
 	@RequestMapping(value="/board_delete.do", method=RequestMethod.POST)
 	public String deletePro(HttpServletRequest req, 
 							@RequestParam Map<String, String> map) {
-		int res = boardDAO.deleteBoard
-					(Integer.parseInt(map.get("num")), map.get("passwd"));
+		//int res = boardDAO.deleteBoard
+		//			(Integer.parseInt(map.get("num")), map.get("passwd"));
+		int res = BoardMapper.deleteBoard(map);
 		if (res>0) {
 			req.setAttribute("msg", "게시글 삭제 성공!! 게시글 목록페이지로 이동합니다.");
 			req.setAttribute("url", "board_list.do");
@@ -78,7 +83,8 @@ public class BoardController {
 	
 	@RequestMapping(value="/board_update.do", method=RequestMethod.GET)
 	public String updateForm(HttpServletRequest req, int num) {
-		BoardDTO dto = boardDAO.getBoard(num, "update");
+		//BoardDTO dto = boardDAO.getBoard(num, "update");
+		BoardDTO dto = BoardMapper.getBoard(num, "update");
 		req.setAttribute("getBoard", dto);
 		return "updateForm";
 	}
@@ -86,7 +92,8 @@ public class BoardController {
 	@RequestMapping(value="/board_update.do", method=RequestMethod.POST)
 	public String updatePro(HttpServletRequest req, 
 												@ModelAttribute BoardDTO dto) {
-		int res = boardDAO.updateBoard(dto);
+		//int res = boardDAO.updateBoard(dto);
+		int res = BoardMapper.updateBoard(dto);
 		if (res>0) {
 			req.setAttribute("msg", "게시글 수정 성공!! 게시글 목록페이지로 이동합니다.");
 			req.setAttribute("url", "board_list.do");
